@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from predictor import predict_symptom_knn, predict_symptom_svm, predict_neural_network
-app = Flask(name)
+app = Flask(__name__)
 from flask_cors import CORS, cross_origin
 
 
@@ -19,7 +19,7 @@ def symptom_predictor():
     return jsonify({'ANN_pred': ANN_pred[0],'SVM_pred':SVM_pred[0],"KNN_pred":KNN_pred[0]})
 
 
-if name == 'main':
+if __name__ == 'main':
     cors = CORS(app)
     app.config['CORS_HEADERS'] = 'Content-Type'
     app.run()
